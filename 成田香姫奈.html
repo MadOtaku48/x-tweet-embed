@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>#成田香姫奈 最新ツイート 50件</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 24px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 { font-size: 22px; font-weight: 700; }
+    header p { font-size: 14px; color: #666; margin-top: 4px; }
+    .container {
+      max-width: 600px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+    .tweet-slot {
+      margin-bottom: 16px;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tweet-slot.loading::after {
+      content: "Loading tweet...";
+      color: #999;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>#成田香姫奈 最新ツイート 50件</h1>
+    <p>Generated: 2026-02-25 20:33 — Embedded via X/Twitter</p>
+  </header>
+  <div class="container" id="container"></div>
+
+  <script>
+    const tweetIds = [
+      "2026603530652626954",
+      "2026593441862529452",
+      "2026583982029287617",
+      "2026569541598494785",
+      "2026563000828833878",
+      "2026525538802872761",
+      "2026515287219240993",
+      "2026499008131379491",
+      "2026355594597392517",
+      "2026308401572245511",
+      "2026229703519203774",
+      "2026207690163388655",
+      "2026207489394639163",
+      "2026196517225423271",
+      "2026064386729849220",
+      "2025952145078714583",
+      "2025896125237281211",
+      "2025878621911675273",
+      "2025858899077972229",
+      "2025857490626470277",
+      "2025857213127131262",
+      "2025849797547270504",
+      "2025847603368456312",
+      "2025830471972843550",
+      "2025817291410338147",
+      "2025718725312438293",
+      "2025596522835177920",
+      "2025588194507645235",
+      "2025574527082885417",
+      "2025554428607271127",
+      "2025553275098112203",
+      "2025546756914925997",
+      "2025546594624717107",
+      "2025535359350947947",
+      "2025488451890766107",
+      "2025483253537513484",
+      "2025478902727278743",
+      "2025473708455031285",
+      "2025431731017580553",
+      "2025418478115848333",
+      "2025404699411972360",
+      "2025387414995476821",
+      "2025367199071035453",
+      "2025323419928330447",
+      "2025207736980701685",
+      "2025206408564887593",
+      "2025195649474723934",
+      "2025195075995926725",
+      "2025191396047769695",
+      "2025181070782779438"
+];
+
+    const container = document.getElementById('container');
+    tweetIds.forEach((id, i) => {
+      const slot = document.createElement('div');
+      slot.className = 'tweet-slot loading';
+      slot.id = 'tweet-' + i;
+      container.appendChild(slot);
+    });
+
+    function loadTweets() {
+      let index = 0;
+      const batchSize = 5;
+
+      function loadBatch() {
+        const promises = [];
+        for (let i = 0; i < batchSize && index < tweetIds.length; i++, index++) {
+          const slot = document.getElementById('tweet-' + index);
+          slot.classList.remove('loading');
+          promises.push(
+            twttr.widgets.createTweet(tweetIds[index], slot, {
+              align: 'center', conversation: 'none', dnt: true
+            })
+          );
+        }
+        Promise.all(promises).then(() => {
+          if (index < tweetIds.length) setTimeout(loadBatch, 500);
+        });
+      }
+
+      loadBatch();
+    }
+
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      t._e = [];
+      t.ready = function(f) { t._e.push(f); };
+      return t;
+    }(document, "script", "twitter-wjs"));
+
+    twttr.ready(function() { loadTweets(); });
+  </script>
+</body>
+</html>
